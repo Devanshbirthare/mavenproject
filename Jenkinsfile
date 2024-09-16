@@ -26,10 +26,26 @@ pipeline
 
         stage('execute unit test')
         {
+            steps
+            {
             withMaven(globalMavenSettingsConfig: '', jdk: 'JAVA_HOME', maven: 'MAVEN_HOME', mavenSettingsConfig: '', traceability: true)
              {
                 sh 'mvn test'
              }
+            }
+
+        }
+
+        stage('code build')
+        {
+            steps
+            {
+                withMaven(globalMavenSettingsConfig: '', jdk: 'JAVA_HOME', maven: 'MAVEN_HOME', mavenSettingsConfig: '', traceability: true) 
+                {
+                    sh 'mvn package'
+
+
+                }
 
         }
     }
