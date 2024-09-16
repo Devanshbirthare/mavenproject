@@ -23,5 +23,14 @@ pipeline
                 }
             }
         }
+
+        stage('execute unit test')
+        {
+            withMaven(globalMavenSettingsConfig: '', jdk: 'JAVA_HOME', maven: 'MAVEN_HOME', mavenSettingsConfig: '', traceability: true)
+             {
+                sh 'mvn test'
+             }
+
+        }
     }
 }
